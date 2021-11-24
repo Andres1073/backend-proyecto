@@ -4,18 +4,12 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
 import {Peliculas} from '../models';
 import {PeliculasRepository} from '../repositories';
@@ -23,8 +17,8 @@ import {PeliculasRepository} from '../repositories';
 export class PeliculasController {
   constructor(
     @repository(PeliculasRepository)
-    public peliculasRepository : PeliculasRepository,
-  ) {}
+    public peliculasRepository: PeliculasRepository,
+  ) { }
 
   @post('/peliculas')
   @response(200, {
@@ -37,7 +31,8 @@ export class PeliculasController {
         'application/json': {
           schema: getModelSchemaRef(Peliculas, {
             title: 'NewPeliculas',
-            
+            exclude: ["nombre_pelicula"]
+
           }),
         },
       },

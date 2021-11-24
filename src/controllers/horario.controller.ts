@@ -4,18 +4,12 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
 import {Horario} from '../models';
 import {HorarioRepository} from '../repositories';
@@ -23,8 +17,8 @@ import {HorarioRepository} from '../repositories';
 export class HorarioController {
   constructor(
     @repository(HorarioRepository)
-    public horarioRepository : HorarioRepository,
-  ) {}
+    public horarioRepository: HorarioRepository,
+  ) { }
 
   @post('/horarios')
   @response(200, {
@@ -37,7 +31,8 @@ export class HorarioController {
         'application/json': {
           schema: getModelSchemaRef(Horario, {
             title: 'NewHorario',
-            
+            exclude: ["horario_pelicula"]
+
           }),
         },
       },
